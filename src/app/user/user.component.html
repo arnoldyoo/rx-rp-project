@@ -3,6 +3,7 @@
     <img class="avatar_img" [src]="user.avatar_url" />
     <h5>{{user.login}}</h5>
   </div>
+  <button [hidden]="!user" #closebtn >X</button>
   <div *ngIf="user === null">
     <img class="avatar_img" alter="no img" />
     <h5>user not come</h5>

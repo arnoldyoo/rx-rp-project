@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Rx';
 import { StreamService } from './../stream.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-user',
@@ -10,11 +10,14 @@ import { Component, OnInit } from '@angular/core';
 export class UserComponent implements OnInit {
   user: any;
   suggestionStream: Observable<any>;
+  @ViewChild('closebtn') closeBtn: ElementRef;
+
   constructor(
     private streamS: StreamService
   ) { }
 
   ngOnInit() {
+    this.streamS.setCloseClickStream(this.closeBtn.nativeElement, 'click');
     this.streamS.setSuggestionStream();
     this.suggestionStream = this.streamS.getSuggestionStream();
     this.suggestionStream.subscribe(user => {
