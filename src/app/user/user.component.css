@@ -1,0 +1,9 @@
+.user-info {
+  margin-top: 20px;
+  margin-left: 20px;
+  display: inline-block;
+}
+.avatar_img {
+  width: 80px;
+  height: 80px;
+}

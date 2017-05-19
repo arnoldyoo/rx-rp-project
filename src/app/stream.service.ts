@@ -9,6 +9,8 @@ export class StreamService {
   refreshClickStream: Observable<any>;
   requestOnRefreshStream: Observable<any>;
 
+  suggestionStream: Observable<any>;
+
   constructor() { }
 
   setStartupStream(url: string) {
@@ -43,4 +45,28 @@ export class StreamService {
     return this.responseStream;
   }
 
+  // -----R-----R-----------R--> responseStream
+  //       map(randomuser)
+  // -----u-----u-----------u-->
+  //        startWith
+  // N----u-----u-------------->
+  // ----------------N----N----> refreshClickStream
+  // N----u-----u----N----N-u--> suggestionStream
+
+  setSuggestionStream() {
+    this.suggestionStream = this.responseStream.map(userList => this._getRandomUser(userList))
+                              .startWith(null)
+                              .merge(this.refreshClickStream.map(ev => null));
+  }
+
+  getSuggestionStream(): Observable<any> {
+    return this.suggestionStream;
+  }
+
+  _getRandomUser(userList: Array<any>): any {
+    const randomNumber: number = Math.floor(Math.random() * (userList.length) );
+    return userList[randomNumber];
+  }
+
 }
+

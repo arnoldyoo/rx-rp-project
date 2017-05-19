@@ -19,12 +19,10 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.streamS.setStartupStream('https://api.github.com/users');
     this.streamS.setRequestOnRefreshStream(this.refreshbtn.nativeElement, 'click');
-
     this.streamS.setResponseStream();
-
-    this.streamS.getResponseStream().subscribe(list => {
-      this.gitUserList = list;
-    });
+    // this.streamS.getResponseStream().subscribe(list => {
+    //   this.gitUserList = list;
+    // });
   }
 
 }

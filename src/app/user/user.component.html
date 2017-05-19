@@ -1,3 +1,10 @@
-<p>
-  user works!
-</p>
+<div class="user-info">
+  <div *ngIf="user !== null">
+    <img class="avatar_img" [src]="user.avatar_url" />
+    <h5>{{user.login}}</h5>
+  </div>
+  <div *ngIf="user === null">
+    <img class="avatar_img" alter="no img" />
+    <h5>user not come</h5>
+  </div>
+</div>
